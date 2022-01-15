@@ -1,5 +1,7 @@
 package org.iesalandalus.programacion.citasclinica.modelo;
 
+import java.time.LocalDateTime;
+
 public class pruebas {
 
 	public static void main(String[] args) {
@@ -18,8 +20,9 @@ public class pruebas {
 		}
 		System.out.println(nuevaprueba);
 		
-		Paciente paciente = new Paciente("daniel guardia fernandez", "77158131D", "667204475");
-		System.out.println(paciente.toString());
+		Paciente paciente = new Paciente("daniel guardia fernandez", "77158131P", "667204475");
+		Cita cita = new Cita(paciente, LocalDateTime.now());
+		System.out.println(cita.toString());
 	}
 
 }
