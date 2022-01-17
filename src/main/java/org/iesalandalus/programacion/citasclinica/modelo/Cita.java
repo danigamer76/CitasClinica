@@ -5,11 +5,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Cita{
-	private static final String FORMATO_FECHA_HORA = "yyyy-MM-dd HH:mm:ss";
+	private static final String FORMATO_FECHA_HORA = "dd/MM/yyyy HH:mm";
 	private LocalDateTime fechaHora;
 	private Paciente paciente;
 	
 	public Cita(Paciente paciente,LocalDateTime fechaHora) {
+		
 		setPaciente(paciente);
 		setFechaHora(fechaHora);
 	}
@@ -19,13 +20,18 @@ public class Cita{
 	};
 	
 	public Paciente getPaciente() {
-		return this.paciente;
+		return new Paciente(this.paciente);
 		
 	}
 	
 	public void setFechaHora(LocalDateTime fechaHora) {
-		DateTimeFormatter Formato = DateTimeFormatter.ofPattern(FORMATO_FECHA_HORA);
-		this.fechaHora = LocalDateTime.parse(fechaHora.format(Formato));
+		if(fechaHora == null) {
+			throw new NullPointerException("FECHA VACIA");
+		}else {
+			DateTimeFormatter Formato = DateTimeFormatter.ofPattern(FORMATO_FECHA_HORA);
+			this.fechaHora = LocalDateTime.parse(fechaHora.format(Formato));
+		}
+		
 	}
 	
 	public LocalDateTime getFechaHora() {
