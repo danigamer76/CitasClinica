@@ -3,22 +3,22 @@ package org.iesalandalus.programacion.citasclinica.modelo;
 import java.time.LocalDate;
 import java.util.Arrays;
 
-public class Citas {
+public class Citas{
 	private int capacidad;
 	private int tamano;
-	Cita Citas[]= new Cita[capacidad];
+	Cita coleccionCitas[];
 	
 	public Cita[] getCitas() {
-		return Citas;
+		return coleccionCitas;
 	}
 	public Cita[] getCitas(LocalDate fecha) {
 		Cita NewCitas[]=new Cita[1];
 		int N;
-		for (int i = 0; i < Citas.length; i++) {
+		for (int i = 0; i < coleccionCitas.length; i++) {
 			N = NewCitas.length;
-			if(Citas[i].getFechaHora().toLocalDate() == fecha) {
+			if(coleccionCitas[i].getFechaHora().toLocalDate() == fecha) {
 				NewCitas = Arrays.copyOf(NewCitas, N + 1);
-				NewCitas[N] = Citas[i];
+				NewCitas[N] = coleccionCitas[i];
 				return NewCitas;
 			}
 		}
@@ -33,13 +33,13 @@ public class Citas {
 	}
 	
 	public void insertar(Cita cita) {
-		int N = Citas.length;
-		Citas = Arrays.copyOf(Citas, N + 1);
-		Citas[N] = cita;
+		int N = coleccionCitas.length;
+		coleccionCitas = Arrays.copyOf(coleccionCitas, N + 1);
+		coleccionCitas[N] = cita;
 	}
 	
 	private int buscarIndice(Cita cita) {
-		int indice = Arrays.asList(Citas).indexOf(cita);
+		int indice = Arrays.asList(coleccionCitas).indexOf(cita);
 		if(indice == -1) {
 			indice = tamano+1;
 		}
@@ -67,15 +67,15 @@ public class Citas {
 		if(buscarIndice(cita) == -1) {
 			throw new IllegalArgumentException("NO SE PUDO ENCONTRAR CITA");
 		}else {
-			return Citas[buscarIndice(cita)];
+			return coleccionCitas[buscarIndice(cita)];
 		}
 	}
 	
 	private void desplazarUnaPosicionHaciaIzquierda(int indice) {
-		for (int i = indice; i < Citas.length; i++) {
-			Citas[i] = Citas[i+1];
+		for (int i = indice; i < coleccionCitas.length; i++) {
+			coleccionCitas[i] = coleccionCitas[i+1];
 		}
-		Citas[Citas.length] = null;
+		coleccionCitas[coleccionCitas.length] = null;
 	}
 	
 	public void borrar(Cita cita) {

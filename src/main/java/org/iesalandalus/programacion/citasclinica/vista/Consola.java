@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.iesalandalus.programacion.citasclinica.modelo.Cita;
-import org.iesalandalus.programacion.citasclinica.modelo.Citas;
 import org.iesalandalus.programacion.citasclinica.modelo.Paciente;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
