@@ -1,6 +1,7 @@
 package org.iesalandalus.programacion.citasclinica.modelo;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 
 public class pruebas {
 
@@ -23,6 +24,14 @@ public class pruebas {
 		Paciente paciente = new Paciente("daniel guardia fernandez", "77158131P", "667204475");
 		Cita cita = new Cita(paciente, LocalDateTime.now());
 		System.out.println(cita.toString());
+		
+		int[] array1 = {2, 4, 6, 8, 10};
+		
+//		Arrays.asList(array1).indexOf(8);
+		int N = array1.length;
+		array1 = Arrays.copyOf(array1, N + 1);
+		array1[N] = 6;
+        System.out.println(Arrays.toString(array1));
 	}
 
 }
