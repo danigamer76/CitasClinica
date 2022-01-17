@@ -47,9 +47,8 @@ public class Consola {
 		return null;
 	}
 	public static Cita leerCita() {
-		
-		
-		return null;
+		Cita cita = new Cita(leerPaciente(), leerFechaHora());
+		return cita;
 
 	}
 	public static Paciente leerPaciente() {
@@ -59,8 +58,7 @@ public class Consola {
 		String dni = Entrada.cadena();
 		System.out.println("TELEFONO DEL PACIENTE:");
 		String telefono = Entrada.cadena();
-		Paciente paciente = new Paciente(nombre, dni, telefono);
-		return paciente;
+		return new Paciente(nombre, dni, telefono);
 
 	}
 	public static LocalDateTime leerFechaHora() {
@@ -89,7 +87,23 @@ public class Consola {
 
 	}
 	public static LocalDate leerFecha() {
-		return null;
+		int valid = 0;
+		LocalDate localdate1 = null;
+		do {
+		System.out.println("DIA:");
+		int dia = Entrada.entero();
+		System.out.println("MES:");
+		int mes = Entrada.entero();	
+		System.out.println("ANIO:");
+		int anio = Entrada.entero();			
+		try {
+			localdate1 = LocalDate.of(anio, mes, dia);
+		} catch (DateTimeException dte) {
+			System.out.println("FECHA INCORRECTA, INTRODUZCA UNA DE VERDAD:");
+			valid = 1;
+		}
+		}while(valid == 1);
+		return localdate1;
 
 	}
 }
