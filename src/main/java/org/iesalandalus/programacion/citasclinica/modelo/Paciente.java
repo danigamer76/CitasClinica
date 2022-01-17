@@ -5,8 +5,8 @@ import java.util.Objects;
 import org.iesalandalus.programacion.utilidades.Entrada;
 
 public class Paciente {
-	private static final String ER_DNI = "";
-	private static final String ER_TELEFONO = "";
+	private static final String ER_DNI = "\\d{8}[A-Za-z]";
+	private static final String ER_TELEFONO = "\\d{9}";
 	private String nombre;
 	private String dni;
 	private String telefono;
@@ -58,11 +58,20 @@ public class Paciente {
 	}
 	
 	private void setDni(String dni) {
-		while(comprobarLetraDni(dni) == false) {
-			System.out.println("INTRODUCE UN DNI REAL:");
-			dni = Entrada.cadena().toUpperCase();
+		if(dni == "" || dni == null) {
+			throw new NullPointerException("DNI DE PACIENTE VACIO");
+		}else {
+			if(dni.matches(ER_DNI) == false) {
+				throw new IllegalArgumentException("LONGITUD DE DNI INCORRECTA");
+			}else {
+				if(comprobarLetraDni(dni) == false) {
+					throw new IllegalArgumentException("LETRA DNI INCORRECTA");
+				}else {
+					this.dni = dni;
+				}
+			}
 		}
-		this.dni = dni;
+		
 	}
 	
 	private boolean comprobarLetraDni(String dni) {
@@ -85,7 +94,7 @@ public class Paciente {
 		if(telefono == "" || telefono == null) {
 			throw new NullPointerException("TELEFONO DE PACIENTE VACIO");
 		}else {
-			if(telefono.length() != 9) {
+			if(telefono.matches(ER_TELEFONO) == false) {
 				throw new IllegalArgumentException("LONGITUD DE TELEFONO INCORRECTA");
 			}else {
 				this.telefono = telefono;
@@ -110,8 +119,7 @@ public class Paciente {
 		if (getClass() != obj.getClass())
 			return false;
 		Paciente other = (Paciente) obj;
-		return Objects.equals(dni, other.dni) && Objects.equals(nombre, other.nombre)
-				&& Objects.equals(telefono, other.telefono);
+		return Objects.equals(dni, other.dni);
 	}
 	
 		@Override

@@ -63,11 +63,11 @@ public class Citas {
 	}
 	
 
-	public void buscar(Cita cita) {
+	public Cita buscar(Cita cita) {
 		if(buscarIndice(cita) == -1) {
-			System.out.println("No se ha encontrado la Cita");
+			throw new IllegalArgumentException("NO SE PUDO ENCONTRAR CITA");
 		}else {
-			System.out.println(Citas[buscarIndice(cita)]);
+			return Citas[buscarIndice(cita)];
 		}
 	}
 	

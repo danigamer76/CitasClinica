@@ -1,10 +1,11 @@
 package org.iesalandalus.programacion.citasclinica.modelo;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 public class Cita{
-	private static final String FORMATO_FECHA_HORA = "";
+	private static final String FORMATO_FECHA_HORA = "yyyy-MM-dd HH:mm:ss";
 	private LocalDateTime fechaHora;
 	private Paciente paciente;
 	
@@ -23,7 +24,8 @@ public class Cita{
 	}
 	
 	public void setFechaHora(LocalDateTime fechaHora) {
-		this.fechaHora = fechaHora;
+		DateTimeFormatter Formato = DateTimeFormatter.ofPattern(FORMATO_FECHA_HORA);
+		this.fechaHora = LocalDateTime.parse(fechaHora.format(Formato));
 	}
 	
 	public LocalDateTime getFechaHora() {
@@ -50,7 +52,7 @@ public class Cita{
 		if (getClass() != obj.getClass())
 			return false;
 		Cita other = (Cita) obj;
-		return Objects.equals(fechaHora, other.fechaHora) && Objects.equals(paciente, other.paciente);
+		return Objects.equals(fechaHora, other.fechaHora);
 	}
 
 	@Override
